@@ -1,5 +1,9 @@
 import { Revenue } from './definitions';
 
+export const randomNumber = (SampleSet : any[]) => {
+  return SampleSet[(Math.floor(Math.random() * SampleSet.length))];
+}
+
 export const formatCurrency = (amount: number) => {
   return (amount / 100).toLocaleString('en-US', {
     style: 'currency',

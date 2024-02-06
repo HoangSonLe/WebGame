@@ -30,7 +30,14 @@
   .flipBox:hover .flipBoxInner {
     transform: rotateY(180deg);
   }
-  
+  .flipBoxInnerHoverError {
+    transform: rotateY(180deg);
+    box-shadow: 0 0 0.1em #f80101;
+  }
+  .flipBoxInnerHoverSuccess {
+    transform: rotateY(180deg);
+    box-shadow: 0 0 0.1em #03ee03;
+  }
   .flipBoxFront, .flipBoxBack {
     position: absolute;
     width: 100%;
