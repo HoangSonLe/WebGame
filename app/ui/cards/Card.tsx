@@ -1,31 +1,47 @@
 import styles from '@/app/ui/Cards/Card.module.css';
 import clsx from 'clsx';
+export enum ECardStatus {
+  Default,
+  Success,
+  Error,
+}
+const defaults = {
+  frontCharacterKey: null,
+  backCharacterKey: null,
+};
+type CardType = {
+  frontCharacterKey?: string | number;
+  backCharacterKey?: string | number;
+  status: ECardStatus;
+};
 export default function Card({
-  characterKey,
+  frontCharacterKey,
   status,
-}: {
-  characterKey: string | number;
-  status: 'default' | 'success' | 'error';
-}) {
+  backCharacterKey,
+}: CardType) {
   return (
     <div className={clsx(styles.flipBox, styles.keyboard)}>
       <div
         className={clsx(
           styles.flipBoxInner,
-          status === 'success' ? styles.flipBoxInnerHoverSuccess : "",
-          status === 'error' ? styles.flipBoxInnerHoverError : "",
+          status === ECardStatus.Success ? styles.flipBoxInnerHoverSuccess : '',
+          status === ECardStatus.Error ? styles.flipBoxInnerHoverError : '',
         )}
       >
-        <div className={styles.flipBoxFront}>
-          <div className={styles.keyLetter} data-char={characterKey}>
-            ?
+        {frontCharacterKey ? (
+          <div className={styles.flipBoxFront}>
+            <div className={styles.keyLetter} data-char={frontCharacterKey}>
+              {frontCharacterKey}
+            </div>
           </div>
-        </div>
-        <div className={styles.flipBoxBack}>
-          <div className={styles.keyLetter} data-char={characterKey}>
-            {characterKey}
+        ) : null}
+        {backCharacterKey ? (
+          <div className={styles.flipBoxBack}>
+            <div className={styles.keyLetter} data-char={backCharacterKey}>
+              {backCharacterKey}
+            </div>
           </div>
-        </div>
+        ) : null}
       </div>
     </div>
   );

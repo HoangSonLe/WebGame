@@ -27,9 +27,9 @@
     box-shadow: 0 0 0.1em #222;
   }
   
-  .flipBox:hover .flipBoxInner {
+  /* .flipBox:hover .flipBoxInner {
     transform: rotateY(180deg);
-  }
+  } */
   .flipBoxInnerHoverError {
     transform: rotateY(180deg);
     box-shadow: 0 0 0.1em #f80101;
