@@ -40,7 +40,7 @@ export default function NumbersKeyboard({
               <div
                 onClick={() => onClick(j)}
                 key={j}
-                className={clsx(styles.keyLetter)}
+                className={styles.keyLetter}
                 data-char={j}
               >
                 {j}

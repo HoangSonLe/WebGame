@@ -45,7 +45,7 @@ function Countdown(props: CountdownType, ref: Ref<RefType>) {
   useLayoutEffect(() => {
     setTimeout(() => {
       setTimeLeft(seconds);
-    }, 1000);
+    }, 500);
   }, [seconds]);
   return (
     <h2 className={`${lusitana.className} mb-4 text-xl md:text-2xl`}>
