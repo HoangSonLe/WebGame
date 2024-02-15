@@ -7,6 +7,6 @@ export default function Page() {
     return <div>
       {/* <NumbersKeyboard/> */}
       {/* <Keyboard/> */}
-      <Card characterKey ={characterKey}/>
+      {/* <Card characterKey ={characterKey}/> */}
     </div>;
 }
