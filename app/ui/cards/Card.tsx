@@ -1,4 +1,4 @@
-import styles from '@/app/ui/Cards/Card.module.css';
+import styles from '@/app/ui/cards/Card.module.css';
 import clsx from 'clsx';
 export enum ECardStatus {
   Default,
