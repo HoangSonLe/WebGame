@@ -8,9 +8,80 @@ import {
   LatestInvoiceRaw,
   User,
   Revenue,
+  GameLevel,
+  ModeLevel,
 } from './definitions';
 import { formatCurrency } from './utils';
-
+export const levelData: GameLevel[] = [
+  {
+    level: 1,
+    number: 5,
+    times: 5,
+  },
+  {
+    level: 2,
+    number: 6,
+    times: 5,
+  },
+  {
+    level: 3,
+    number: 7,
+    times: 10,
+  },
+  {
+    level: 4,
+    number: 8,
+    times: 10,
+  },
+  {
+    level: 5,
+    number: 9,
+    times: 10,
+  },
+  {
+    level: 6,
+    number: 10,
+    times: 10,
+  },
+  {
+    level: 7,
+    number: 11,
+    times: 10,
+  },
+  {
+    level: 8,
+    number: 12,
+    times: 10,
+  },
+  {
+    level: 9,
+    number: 13,
+    times: 10,
+  },
+  {
+    level: 10,
+    number: 14,
+    times: 10,
+  },
+];
+export const modeLevelData : ModeLevel[] = [
+  {
+    name:"Easy",
+    time: 6
+  },
+  {
+    name:"Medium",
+    time: 5
+  },
+  {
+    name:"Hard",
+    time: 4
+  },
+  {
+    name:"Super Hard",
+    time: 3
+  },
+]
 export async function fetchRevenue() {
   // Add noStore() here to prevent the response from being cached.
   // This is equivalent to in fetch(..., {cache: 'no-store'}).
