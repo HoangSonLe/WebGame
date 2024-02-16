@@ -245,7 +245,7 @@ export default function CoreCharacterGame({
         className={`${lusitana.className} flex flex-col items-center text-sm`}
       >
         <div className="font-bold">
-          {isShowSample ? 'Viewing' : 'Answering'}
+          {isShowSample && userInputList.length == 0 ? 'Viewing' : 'Answering'}
         </div>
         <div> {remainingTime} seconds</div>
       </div>
