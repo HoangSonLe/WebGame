@@ -22,3 +22,6 @@ h1 {
   font-family: monospace;
   padding: 0.7em;
 }
+*{
+  box-sizing: border-box;
+}

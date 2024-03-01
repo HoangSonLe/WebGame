@@ -3,6 +3,8 @@ import {
   UserGroupIcon,
   HomeIcon,
   DocumentDuplicateIcon,
+  CreditCardIcon,
+  RectangleGroupIcon
 } from '@heroicons/react/24/outline';
 import { BsAlphabet } from "react-icons/bs";
 import Link from 'next/link';
@@ -12,7 +14,7 @@ import clsx from 'clsx';
 // Map of links to display in the side navigation.
 // Depending on the size of the application, this would be stored in a database.
 const links = [
-  // { name: 'Home', href: '/dashboard', icon: HomeIcon },
+  { name: 'Card Game', href: '/dashboard/cards', icon: RectangleGroupIcon },
   {
     name: 'Alphabet Game',
     href: '/dashboard/alphabetGame',

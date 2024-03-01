@@ -1,6 +1,6 @@
 'use client';
 import { GameLevel, ModeLevel } from '@/app/lib/definitions';
-import { randomNumber } from '@/app/lib/utils';
+import { randomNumberWithSample } from '@/app/lib/utils';
 import Card, { ECardStatus } from '@/app/ui/cards/Card';
 import { lusitana } from '@/app/ui/fonts';
 import { CharacterKeyType } from '@/app/ui/keyboard/Keyboard';
@@ -12,6 +12,7 @@ import { useEffect, useRef, useState } from 'react';
 import { CountdownCircleTimer } from 'react-countdown-circle-timer';
 import Keyboard from '../keyboard/Keyboard';
 import { modeLevelData } from '@/app/lib/data';
+import BoardGame from './BoardGame';
 
 type MemoryGameState = {
   userWinTimes: number;
@@ -86,7 +87,7 @@ export default function CoreCharacterGame({
     let currentLevelTmp = nextLevel ?? currentLevel;
 
     for (let i = 0; i < currentLevelTmp.number; i++) {
-      var randomIndex = randomNumber(sampleRandomList);
+      var randomIndex = randomNumberWithSample(sampleRandomList);
       newSampleList.push(randomIndex);
     }
     return newSampleList;
@@ -327,26 +328,12 @@ export default function CoreCharacterGame({
             pause
         </div>
       </div> */}
-
-      <h2 className={`${lusitana.className} mb-1 text-xl md:text-2xl`}>
-        <b>Level:</b> {currentLevel.level} | <b>Mode:</b> {modeLevel.name}
-      </h2>
-      <div className="m-1 flex">
-        <h3 className={`${lusitana.className} mb-2 text-xl md:text-2xl`}>
-          <b>Turns:</b> {userWinTimes}/
-        </h3>
-        <h3
-          className={`${lusitana.className} mb-2 text-xl text-red-600 md:text-2xl`}
-        >
-          {userLoseTimes}
-        </h3>
-        <h3 className={`${lusitana.className} mb-2 text-xl md:text-2xl`}>
-          /{currentLevel.times}
-        </h3>
-        <h3 className={`${lusitana.className} mb-2 ml-1 text-xl md:text-2xl`}>
-          | <b>Times:</b> {userWinTimes}/{currentLevel.times}
-        </h3>
-      </div>
+      <BoardGame
+        currentLevel={currentLevel}
+        modeLevel={modeLevel}
+        userLoseTimes={userLoseTimes}
+        userWinTimes={userWinTimes}
+      />
       {renderGameView()}
     </div>
   );

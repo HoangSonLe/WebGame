@@ -1,0 +1,88 @@
+ 
+.flipBox {
+    background-color: transparent;
+    width: 3em;
+    height: 3em;
+    perspective: 1000px;
+    margin: 0.4em;
+  }
+  
+  .flipBoxInner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+
+    perspective: 1000px;
+    background: #fff;
+    color: #333;
+    float: left;
+    border-radius: 0.3em;
+    box-sizing: border-box;
+    cursor: pointer;
+    border: 1px solid black;
+    -webkit-user-select: none;
+    box-shadow: 0 0 0.1em #222;
+  }
+  
+  /* .flipBox:hover .flipBoxInner {
+    transform: rotateY(180deg);
+  } */
+  .flipBoxInnerHoverError {
+    transform: rotateY(180deg);
+    box-shadow: 0 0 0.1em #f80101;
+  }
+  .flipBoxInnerHoverSuccess {
+    transform: rotateY(180deg);
+    box-shadow: 0 0 0.1em #03ee03;
+  }
+  .flipBoxFront, .flipBoxBack {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+  
+  .flipBoxFront {
+    /* background-color: #bbb;
+    color: black; */
+  }
+  
+  .flipBoxBack {
+    background-color: #140f0f;
+    border-radius: 0.3em;
+    transform: rotateY(180deg);
+  }
+ 
+ .keyboard {
+    text-align: center;
+    font-size: 14px;
+    font-family: sans-serif;
+}
+
+.keyboardRow {
+    /* display: inline-block; */
+    display: flex;
+    flex-wrap: wrap;
+    height: 3em;
+    margin: 0.2em;
+}
+.keyboardRowAll{
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  height: 3em;
+  margin: 0.6em 0.2em;
+  box-sizing: border-box;
+}
+
+.keyLetter {
+    line-height: 2em;
+    font-size: 19px;
+}
+.keyboard > .keyboardRow {
+    text-align: center;
+}

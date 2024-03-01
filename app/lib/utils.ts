@@ -1,8 +1,11 @@
 import { Revenue } from './definitions';
 
-export const randomNumber = (SampleSet : any[]) => {
-  return SampleSet[(Math.floor(Math.random() * SampleSet.length))];
-}
+export const randomNumberWithSample = (SampleSet: any[]) => {
+  return SampleSet[Math.floor(Math.random() * SampleSet.length)];
+};
+export const randomNumber = (maxNumber: number) => {
+  return Math.floor(Math.random() * maxNumber);
+};
 
 export const formatCurrency = (amount: number) => {
   return (amount / 100).toLocaleString('en-US', {

@@ -10,76 +10,140 @@ import {
   Revenue,
   GameLevel,
   ModeLevel,
+  CardGameMode,
 } from './definitions';
 import { formatCurrency } from './utils';
 export const levelData: GameLevel[] = [
   {
     level: 1,
-    number: 5,
-    times: 5,
-  },
-  {
-    level: 2,
     number: 6,
     times: 5,
   },
   {
-    level: 3,
+    level: 2,
     number: 7,
-    times: 10,
+    times: 5,
+  },
+  {
+    level: 3,
+    number: 8,
+    times: 5,
   },
   {
     level: 4,
-    number: 8,
-    times: 10,
+    number: 9,
+    times: 5,
   },
   {
     level: 5,
-    number: 9,
-    times: 10,
+    number: 10,
+    times: 5,
   },
   {
     level: 6,
-    number: 10,
-    times: 10,
+    number: 11,
+    times: 5,
   },
   {
     level: 7,
-    number: 11,
-    times: 10,
+    number: 12,
+    times: 5,
   },
   {
     level: 8,
-    number: 12,
-    times: 10,
+    number: 13,
+    times: 5,
   },
   {
     level: 9,
-    number: 13,
-    times: 10,
+    number: 14,
+    times: 5,
   },
   {
     level: 10,
-    number: 14,
-    times: 10,
+    number: 15,
+    times: 5,
   },
 ];
 export const modeLevelData : ModeLevel[] = [
   {
     name:"Easy",
-    time: 6
-  },
-  {
-    name:"Medium",
     time: 5
   },
   {
-    name:"Hard",
+    name:"Medium",
     time: 4
   },
   {
-    name:"Super Hard",
+    name:"Hard",
     time: 3
+  },
+  {
+    name:"Super Hard",
+    time: 2
+  },
+]
+export const cardGameModelData : CardGameMode[] = [
+  {
+    level: 0,
+    x_Axis: 5,
+    y_Axis: 5,
+    times: 5
+  },
+  {
+    level: 1,
+    x_Axis: 6,
+    y_Axis: 5,
+    times: 5
+    
+  },
+  {
+    level: 2,
+    x_Axis: 6,
+    y_Axis: 6,
+    times: 5
+  },
+  {
+    level: 3,
+    x_Axis: 7,
+    y_Axis: 6,
+    times: 1
+  },
+  {
+    level: 4,
+    x_Axis: 7,
+    y_Axis: 7,
+    times: 5
+  },
+  {
+    level: 5,
+    x_Axis: 8,
+    y_Axis: 8,
+    times: 5
+  },
+  {
+    level: 6,
+    x_Axis: 9,
+    y_Axis: 8,
+    times: 5
+  },
+  {
+    level: 7,
+    x_Axis: 9,
+    y_Axis: 9,
+    times: 5
+  },
+  {
+    level: 8,
+    x_Axis: 10,
+    y_Axis: 9,
+    times: 5
+  },
+  {
+    level: 9,
+    x_Axis: 10,
+    y_Axis: 10,
+    times: 5
   },
 ]
 export async function fetchRevenue() {
