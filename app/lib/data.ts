@@ -88,62 +88,62 @@ export const cardGameModelData : CardGameMode[] = [
     level: 0,
     x_Axis: 5,
     y_Axis: 5,
-    times: 5
+    times: 3
   },
   {
     level: 1,
     x_Axis: 6,
     y_Axis: 5,
-    times: 5
+    times: 3
     
   },
   {
     level: 2,
     x_Axis: 6,
     y_Axis: 6,
-    times: 5
+    times: 3
   },
   {
     level: 3,
     x_Axis: 7,
     y_Axis: 6,
-    times: 1
+    times: 3
   },
   {
     level: 4,
     x_Axis: 7,
     y_Axis: 7,
-    times: 5
+    times: 3
   },
   {
     level: 5,
     x_Axis: 8,
     y_Axis: 8,
-    times: 5
+    times: 3
   },
   {
     level: 6,
     x_Axis: 9,
     y_Axis: 8,
-    times: 5
+    times: 3
   },
   {
     level: 7,
     x_Axis: 9,
     y_Axis: 9,
-    times: 5
+    times: 3
   },
   {
     level: 8,
     x_Axis: 10,
     y_Axis: 9,
-    times: 5
+    times: 3
   },
   {
     level: 9,
     x_Axis: 10,
     y_Axis: 10,
-    times: 5
+    times: 3
   },
 ]
 export async function fetchRevenue() {

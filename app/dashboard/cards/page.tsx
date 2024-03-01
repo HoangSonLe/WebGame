@@ -171,7 +171,7 @@ export default function Page() {
 
   const setNewGame = (isWin: boolean) => {
     if (isWin && !hasWrongSelect) {
-      if (beginCount == currentLevel.x_Axis * currentLevel.y_Axis - 40) {
+      if (beginCount == currentLevel.x_Axis * currentLevel.y_Axis) {
         let nextLevel = cardGameModelData.find(
           (i) => i.level == currentLevel.level + 1,
         );
@@ -238,6 +238,7 @@ export default function Page() {
     if (gameStatus == 'default') {
       setGameState({
         ...gameState,
+        hasWrongSelect: false,
         isShowSample: false,
       });
     }
@@ -256,9 +257,18 @@ export default function Page() {
         <div className="font-bold">
           Mode: {currentLevel.x_Axis} * {currentLevel.y_Axis}
         </div>
-        <div>
-          {' '}
-          {userWinTimes}/{currentLevel.times} times
+        <div className="m-1 flex">
+          <h3 className={`${lusitana.className} mb-2 text-xl md:text-2xl`}>
+            <b>Turns:</b> {userWinTimes}/
+          </h3>
+          <h3
+            className={`${lusitana.className} mb-2 text-xl text-red-600 md:text-2xl`}
+          >
+            {userLoseTimes}
+          </h3>
+          <h3 className={`${lusitana.className} mb-2 text-xl md:text-2xl`}>
+            /{currentLevel.times}
+          </h3>
         </div>
       </div>
     );
