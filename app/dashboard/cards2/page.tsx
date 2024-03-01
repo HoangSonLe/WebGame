@@ -33,22 +33,7 @@ type CountdownType = {
   time: number;
   isPlaying: boolean;
 };
-export default function CardGame({
-  levels,
-  sampleRandomList,
-  childrenKeyboard,
-  titleGame,
-  modeLevel,
-}: {
-  levels: GameLevel[];
-  sampleRandomList: CharacterKeyType[];
-  titleGame: string;
-  modeLevel: ModeLevel;
-  childrenKeyboard: (
-    isDisable: boolean,
-    onClickKeyboardProp: (value: CharacterKeyType) => void,
-  ) => JSX.Element;
-}) {
+export default function Page() {
   const defaultValueText: string = '';
   const viewTime: number = 3;
   const answerTime: number = 10;
