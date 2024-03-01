@@ -46,22 +46,7 @@ var hiddenStyle: React.CSSProperties = {
   // boxShadow: "0px 0px 10px white",
   borderRadius: '0.3em',
 };
-export default function CardGame({
-  levels,
-  sampleRandomList,
-  childrenKeyboard,
-  titleGame,
-  modeLevel,
-}: {
-  levels: GameLevel[];
-  sampleRandomList: CharacterKeyType[];
-  titleGame: string;
-  modeLevel: ModeLevel;
-  childrenKeyboard: (
-    isDisable: boolean,
-    onClickKeyboardProp: (value: CharacterKeyType) => void,
-  ) => JSX.Element;
-}) {
+export default function Page() {
   const viewTime: number = 5;
   const answerTime: number = 10;
   const defaultGameState = {
@@ -266,7 +251,7 @@ export default function CardGame({
   }) => {
     return (
       <div
-        className={`${lusitana.className} flex flex-col items-center text-sm text-base`}
+        className={`${lusitana.className} flex flex-col items-center text-base text-sm`}
       >
         <div className="font-bold">
           Mode: {currentLevel.x_Axis} * {currentLevel.y_Axis}
@@ -282,7 +267,9 @@ export default function CardGame({
   const renderGameView = () => {
     switch (gameStatus) {
       case 'start':
-        return <StartGame title={titleGame} startGame={restartGame} />;
+        return (
+          <StartGame title={'Chimpanzee Memory Game'} startGame={restartGame} />
+        );
       case 'default':
         return (
           <div
