@@ -11,6 +11,12 @@ import Win from '@/app/ui/result-game/Win';
 import clsx from 'clsx';
 import React, { ReactNode, useEffect, useState } from 'react';
 import { CountdownCircleTimer } from 'react-countdown-circle-timer';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
+import { TextField } from '@mui/material';
+import Button from '@mui/material/Button';
 
 type CardGameState = {
   userWinTimes: number;
@@ -34,6 +40,10 @@ type CountdownType = {
   key: number;
   time: number;
   isPlaying: boolean;
+};
+type LevelFormType = {
+  level: string;
+  beginCount: number;
 };
 var showStyle: React.CSSProperties = {
   background: 'unset',
@@ -84,6 +94,10 @@ export default function Page() {
     beginCount,
   } = gameState;
   const { isPlaying, key, time } = countDownState;
+  const [formData, setFormData] = useState<LevelFormType>({
+    level: currentLevel.level.toString(),
+    beginCount: beginCount,
+  });
   var existNumberRandomList: number[] = [];
 
   const checkIsWin = (): boolean => {
@@ -273,6 +287,34 @@ export default function Page() {
       </div>
     );
   };
+  const onSubmitForm = (e: React.FormEvent) => {
+    e.preventDefault();
+    let selectLevel = cardGameModelData.find(
+      (i) => i.level.toString() == formData.level,
+    );
+    setCountDownState({
+      ...countDownState,
+      key: countDownState.key + 1,
+      time: viewTime,
+    });
+    setGameState({
+      ...defaultGameState,
+      currentLevel: selectLevel,
+      sampleList: generateSampleList(formData.beginCount),
+    } as CardGameState);
+  };
+  const onChangeLevel = (event: SelectChangeEvent) => {
+    setFormData({
+      ...formData,
+      level: event.target.value.toString(),
+    });
+  };
+  const onChangeBeginCount = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({
+      ...formData,
+      beginCount: parseInt(event.target.value),
+    });
+  };
   // //#endregion
   const renderGameView = () => {
     switch (gameStatus) {
@@ -290,7 +332,7 @@ export default function Page() {
               borderRadius: '0.3em',
             }}
           >
-            <div style={{ margin: '10px' }}>
+            <div className="m-2 flex flex-wrap items-center justify-center">
               <CountdownCircleTimer
                 size={150}
                 isPlaying={true}
@@ -302,6 +344,43 @@ export default function Page() {
               >
                 {renderCountdownContent}
               </CountdownCircleTimer>
+              <form onSubmit={onSubmitForm}>
+                <div className="m-1 flex flex-wrap items-center justify-center">
+                  <FormControl
+                    sx={{ m: 1, minWidth: 120 }}
+                    size="small"
+                    fullWidth
+                  >
+                    <InputLabel id="demo-select-small-label">Level</InputLabel>
+                    <Select
+                      labelId="demo-select-small-label"
+                      id="demo-select-small"
+                      value={currentLevel.level.toString()}
+                      label="Level"
+                      onChange={onChangeLevel}
+                      sx={{ marginBottom: '10px' }}
+                    >
+                      {cardGameModelData.map((i) => (
+                        <MenuItem key={i.level} value={i.level}>
+                          {i.x_Axis} * {i.y_Axis}
+                        </MenuItem>
+                      ))}
+                    </Select>
+                    <TextField
+                      id="outlined-basic"
+                      label="Max"
+                      variant="outlined"
+                      size="small"
+                      defaultValue={beginCount}
+                      sx={{ marginBottom: '10px' }}
+                      onChange={onChangeBeginCount}
+                    />
+                  </FormControl>
+                  <Button type="submit" variant="contained" color="primary">
+                    Submit
+                  </Button>
+                </div>
+              </form>
             </div>
             <div
               style={{
@@ -352,12 +431,13 @@ export default function Page() {
                                     existAnswerItem ? styles.minimizeCSS : '',
                                   )}
                                   style={{
-                                    height: '30px',
-                                    width: '30px',
+                                    height: '35px',
+                                    width: '35px',
                                     margin: '4px',
                                     textAlign: 'center',
                                     lineHeight: '1.8em',
                                     userSelect: 'none',
+                                    fontSize: '20px',
                                     ...style,
                                   }}
                                   key={XIndex + YIndex}
