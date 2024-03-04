@@ -15,9 +15,9 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-import { TextField } from '@mui/material';
+import { FormHelperText, TextField } from '@mui/material';
 import Button from '@mui/material/Button';
-
+import Swal from 'sweetalert2';
 type CardGameState = {
   userWinTimes: number;
   userLoseTimes: number;
@@ -291,17 +291,37 @@ export default function Page() {
     e.preventDefault();
     let selectLevel = cardGameModelData.find(
       (i) => i.level.toString() == formData.level,
-    );
-    setCountDownState({
-      ...countDownState,
-      key: countDownState.key + 1,
-      time: viewTime,
-    });
-    setGameState({
-      ...defaultGameState,
-      currentLevel: selectLevel,
-      sampleList: generateSampleList(formData.beginCount),
-    } as CardGameState);
+    ) as CardGameMode;
+    if (!isValidFormInput(formData.beginCount.toString())) {
+      Swal.fire({
+        title: 'Error!',
+        text: `Value Cannot exceed the number of cells (${
+          selectLevel?.x_Axis * selectLevel?.y_Axis
+        })`,
+        icon: 'error',
+        confirmButtonText: 'OK',
+      });
+    } else {
+      setCountDownState({
+        ...countDownState,
+        key: countDownState.key + 1,
+        time: viewTime,
+      });
+      setGameState({
+        ...defaultGameState,
+        currentLevel: selectLevel,
+        sampleList: generateSampleList(formData.beginCount),
+      } as CardGameState);
+    }
+  };
+  const isValidFormInput = (value: string) => {
+    let selectLevel = cardGameModelData.find(
+      (i) => i.level.toString() == formData.level,
+    ) as CardGameMode;
+    if (parseInt(value) > selectLevel?.x_Axis * selectLevel?.y_Axis) {
+      return false;
+    }
+    return true;
   };
   const onChangeLevel = (event: SelectChangeEvent) => {
     setFormData({
@@ -309,11 +329,26 @@ export default function Page() {
       level: event.target.value.toString(),
     });
   };
+
   const onChangeBeginCount = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({
-      ...formData,
-      beginCount: parseInt(event.target.value),
-    });
+    let selectLevel = cardGameModelData.find(
+      (i) => i.level.toString() == formData.level,
+    ) as CardGameMode;
+    if (!isValidFormInput(event.target.value)) {
+      Swal.fire({
+        title: 'Error!',
+        text: `Value Cannot exceed the number of cells (${
+          selectLevel?.x_Axis * selectLevel?.y_Axis
+        })`,
+        icon: 'error',
+        confirmButtonText: 'OK',
+      });
+    } else {
+      setFormData({
+        ...formData,
+        beginCount: parseInt(event.target.value),
+      });
+    }
   };
   // //#endregion
   const renderGameView = () => {
@@ -355,7 +390,7 @@ export default function Page() {
                     <Select
                       labelId="demo-select-small-label"
                       id="demo-select-small"
-                      value={currentLevel.level.toString()}
+                      value={formData.level}
                       label="Level"
                       onChange={onChangeLevel}
                       sx={{ marginBottom: '10px' }}
@@ -372,6 +407,10 @@ export default function Page() {
                       variant="outlined"
                       size="small"
                       defaultValue={beginCount}
+                      inputProps={{
+                        max: currentLevel.x_Axis * currentLevel.y_Axis,
+                      }}
+                      type="number"
                       sx={{ marginBottom: '10px' }}
                       onChange={onChangeBeginCount}
                     />
